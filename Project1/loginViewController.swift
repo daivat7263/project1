@@ -8,10 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class loginViewController: UIViewController {
+    
+    var dbObj:projectManager?
+    
+   
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dbObj = projectManager()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

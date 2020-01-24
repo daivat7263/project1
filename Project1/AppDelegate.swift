@@ -13,10 +13,30 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var dbPath = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        print(docPath)
+        self.dbPath = docPath + "/project1.db"
+        
+        if(!FileManager.default.fileExists(atPath: self.dbPath))
+        {
+            let bundleDBPath = Bundle.main.path(forResource: "project1", ofType: "db")
+            
+            do{
+                try FileManager.default.copyItem(atPath: bundleDBPath!, toPath: self.dbPath)
+            }
+            catch(let err as NSError)
+            {
+                print(err.localizedDescription)
+            }
+            
+        }
+        Thread.sleep(forTimeInterval: 10)
+        
+       
         return true
     }
 
